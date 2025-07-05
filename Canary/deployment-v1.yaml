@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: canary-app-v1
+  labels:
+    app: canary-app
+    version: v1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: canary-app
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: canary-app
+        version: v1
+    spec:
+      containers:
+      - name: canary-app
+        image: daryladriene/go-web-app:9
+        ports:
+        - containerPort: 80

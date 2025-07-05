@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bluegreen-app-v2
+  labels:
+    app: bluegreen-app
+    version: v2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bluegreen-app
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: bluegreen-app
+        version: v2
+    spec:
+      containers:
+      - name: bluegreen-app
+        image: daryladriene/tictactoe:4
+        ports:
+        - containerPort: 80

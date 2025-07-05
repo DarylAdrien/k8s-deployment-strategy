@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bluegreen-app-v1
+  labels:
+    app: bluegreen-app
+    version: v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bluegreen-app
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: bluegreen-app
+        version: v1
+    spec:
+      containers:
+      - name: bluegreen-app
+        image: daryladriene/go-web-app:9
+        ports:
+        - containerPort: 9090
